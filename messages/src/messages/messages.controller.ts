@@ -1,5 +1,5 @@
 // nest generate controller messages/messages --flat
-import { Controller, Get, Post } from '@nestjs/common';
+import { Controller, Get, Param, Post, Body } from '@nestjs/common';
 
 @Controller('messages')
 export class MessagesController {
@@ -7,8 +7,12 @@ export class MessagesController {
     listMessages(): void {}
 
     @Post()
-    createMessages(): void {}
+    createMessages(@Body() body: any): void {
+        console.log(body);
+    }
 
     @Get('/:id')
-    getMessage(): void {}
+    getMessage(@Param('id') id: string): void {
+        console.log(id);
+    }
 }
