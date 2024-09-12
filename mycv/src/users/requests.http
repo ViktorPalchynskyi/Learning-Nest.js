@@ -7,10 +7,10 @@ Content-Type: application/json
     "password": "123test123"
 }
 
-### List all messages
+### List all users by email
 
-GET http://localhost:3000/messages
+GET http://localhost:3000/auth?email=test@test.com
 
-### Get a particular message
+### Get a particular user
 
-GET http://localhost:3000/messages/938
+GET http://localhost:3000/auth/1
