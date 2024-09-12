@@ -2,7 +2,7 @@ import { Body, Controller, Post, Get, Patch, Param, Query, Delete, NotFoundExcep
 import { CreateUserDto } from './dtos/crate-user.dto';
 import { UsersService } from './users.service';
 import { UpdateUserDto } from './dtos/update-user.dto';
-import { SerializeInterceptor } from 'src/interceptors/serialize.interceptor';
+import { Serialize } from 'src/interceptors/serialize.interceptor';
 import { UserDto } from './dtos/user.dto';
 
 @Controller('auth')
@@ -17,7 +17,8 @@ export class UsersController {
         this.userSirvice.create(email, password);
     }
 
-    @UseInterceptors(new SerializeInterceptor(UserDto))
+    // @UseInterceptors(new SerializeInterceptor(UserDto))
+    @Serialize(UserDto)
     @Get('/:id')
     async getUser(@Param('id') id: string) {
         console.log('hendler is running');
