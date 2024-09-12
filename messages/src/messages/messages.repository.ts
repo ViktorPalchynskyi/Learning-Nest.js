@@ -1,11 +1,11 @@
 import { readFile, writeFile } from 'node:fs/promises';
 
-interface Message {
+export interface Message {
     content: string;
     id: string;
 }
 
-interface MessageStorage {
+export interface MessageStorage {
     id: Message;
 }
 
