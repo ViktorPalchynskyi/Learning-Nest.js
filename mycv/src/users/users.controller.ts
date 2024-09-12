@@ -1,19 +1,8 @@
-import {
-    Body,
-    Controller,
-    Post,
-    Get,
-    Patch,
-    Param,
-    Query,
-    Delete,
-    NotFoundException,
-    UseInterceptors,
-    ClassSerializerInterceptor,
-} from '@nestjs/common';
+import { Body, Controller, Post, Get, Patch, Param, Query, Delete, NotFoundException, UseInterceptors } from '@nestjs/common';
 import { CreateUserDto } from './dtos/crate-user.dto';
 import { UsersService } from './users.service';
 import { UpdateUserDto } from './dtos/update-user.dto';
+import { SerializeInterceptor } from 'src/interceptors/serialize.interceptor';
 
 @Controller('auth')
 export class UsersController {
@@ -27,9 +16,10 @@ export class UsersController {
         this.userSirvice.create(email, password);
     }
 
-    @UseInterceptors(ClassSerializerInterceptor)
+    @UseInterceptors(SerializeInterceptor)
     @Get('/:id')
     async getUser(@Param('id') id: string) {
+        console.log('hendler is running');
         const user = await this.userSirvice.findOne(Number(id));
 
         if (!user) throw new NotFoundException('user not found');
