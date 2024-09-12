@@ -13,9 +13,19 @@ GET http://localhost:3000/auth?email=test@test.com
 
 ### Get a particular user
 
-GET http://localhost:3000/auth/1
+GET http://localhost:3000/auth/2
 
 
 ### Delete a particular user
 
 DELETE  http://localhost:3000/auth/3
+
+
+### Patch a particular user
+
+PATCH   http://localhost:3000/auth/2
+Content-Type: application/json
+
+{
+    "email": "test2@test2.com"
+}
