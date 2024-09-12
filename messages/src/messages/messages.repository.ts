@@ -1,3 +1,4 @@
+import { Injectable } from '@nestjs/common';
 import { readFile, writeFile } from 'node:fs/promises';
 
 export interface Message {
@@ -9,6 +10,7 @@ export interface MessageStorage {
     id: Message;
 }
 
+@Injectable()
 export class MessagesRepository {
     async findOne(id: string): Promise<Message> {
         const contents = await readFile('messages.json', 'utf8');

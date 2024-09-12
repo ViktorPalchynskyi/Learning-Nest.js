@@ -9,12 +9,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.MessagesModule = void 0;
 const common_1 = require("@nestjs/common");
 const messages_controller_1 = require("./messages.controller");
+const messages_service_1 = require("./messages.service");
+const messages_repository_1 = require("./messages.repository");
 let MessagesModule = class MessagesModule {
 };
 exports.MessagesModule = MessagesModule;
 exports.MessagesModule = MessagesModule = __decorate([
     (0, common_1.Module)({
         controllers: [messages_controller_1.MessagesController],
+        providers: [messages_service_1.MessagesService, messages_repository_1.MessagesRepository],
     })
 ], MessagesModule);
 //# sourceMappingURL=messages.module.js.map
