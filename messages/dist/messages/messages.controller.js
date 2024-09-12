@@ -15,13 +15,19 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.MessagesController = void 0;
 const common_1 = require("@nestjs/common");
 const create_message_dto_1 = require("./dtos/create-message.dto");
+const messages_service_1 = require("./messages.service");
 let MessagesController = class MessagesController {
-    listMessages() { }
+    constructor() {
+        this.messageService = new messages_service_1.MessagesService();
+    }
+    listMessages() {
+        return this.messageService.findAll();
+    }
     createMessages(body) {
-        console.log(body);
+        return this.messageService.create(body.content);
     }
     getMessage(id) {
-        console.log(id);
+        return this.messageService.findOne(id);
     }
 };
 exports.MessagesController = MessagesController;
@@ -46,6 +52,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], MessagesController.prototype, "getMessage", null);
 exports.MessagesController = MessagesController = __decorate([
-    (0, common_1.Controller)('messages')
+    (0, common_1.Controller)('messages'),
+    __metadata("design:paramtypes", [])
 ], MessagesController);
 //# sourceMappingURL=messages.controller.js.map
