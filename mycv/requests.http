@@ -1,0 +1,17 @@
+### List all messages
+
+GET http://localhost:3000/messages
+
+
+### Create a new messge
+POST  http://localhost:3000/auth/signup
+Content-Type: application/json
+
+{
+    "email": "test@test.com",
+    "password": "123test123"
+}
+
+### Get a particular message
+
+GET http://localhost:3000/messages/938
