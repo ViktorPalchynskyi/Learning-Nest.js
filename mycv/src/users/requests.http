@@ -7,6 +7,15 @@ Content-Type: application/json
     "password": "123test123"
 }
 
+### Signin 
+POST  http://localhost:3000/auth/signin
+Content-Type: application/json
+
+{
+    "email": "test333@test.com",
+    "password": "123test123"
+}
+
 ### List all users by email
 
 GET http://localhost:3000/auth?email=test@test.com
