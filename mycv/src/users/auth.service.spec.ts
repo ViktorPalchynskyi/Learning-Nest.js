@@ -2,7 +2,7 @@ import { Test } from '@nestjs/testing';
 import { AuthService } from './auth.service';
 import { UsersService } from './users.service';
 import { User } from './user.entity';
-import { BadRequestException } from '@nestjs/common';
+import { BadRequestException, NotFoundException } from '@nestjs/common';
 
 describe('AuthService', () => {
     let service: AuthService;
@@ -51,5 +51,9 @@ describe('AuthService', () => {
 
         fakeUsersService.find = () => Promise.resolve([{ id: 1, email, password } as User]);
         await expect(service.signup(email, password)).rejects.toThrow(BadRequestException);
+    });
+
+    it('throws if signin is called with an unused email', async () => {
+        await expect(service.signin(testUser.email, testUser.password)).rejects.toThrow(NotFoundException);
     });
 });
