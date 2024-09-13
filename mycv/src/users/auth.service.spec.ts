@@ -56,4 +56,21 @@ describe('AuthService', () => {
     it('throws if signin is called with an unused email', async () => {
         await expect(service.signin(testUser.email, testUser.password)).rejects.toThrow(NotFoundException);
     });
+
+    it('throws if an invalid password is provided', async () => {
+        const { email, password } = testUser;
+
+        fakeUsersService.find = () => Promise.resolve([{ email, password } as User]);
+        await expect(service.signin(email, 'fakepassword')).rejects.toThrow(BadRequestException);
+    });
+
+    it('returns a user if correct password is provided', async () => {
+        const { email, password } = testUser;
+
+        fakeUsersService.find = () =>
+            Promise.resolve([{ email, password: 'a1c2e31005b72a4b.b1aaf62df9ceac9b4edb42ba630022c2b8ecb70f2db0b3cf3d01f51f1cde29eb' } as User]);
+        const user = await service.signin(email, password);
+
+        expect(user).toBeDefined();
+    });
 });
