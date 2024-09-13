@@ -22,6 +22,8 @@ export class UsersController {
 
     @Get('/whoami')
     whoAmI(@CurrentUser() user: string) {
+        console.log(user);
+
         return user;
     }
 
