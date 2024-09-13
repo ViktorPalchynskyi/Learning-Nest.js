@@ -5,7 +5,8 @@ import { AppModule } from './../src/app.module';
 
 describe('Authentication System', () => {
     let app: INestApplication;
-    const testUser = { email: 'unique@test.com', password: 'test123test' };
+    const random = Math.round(Math.random() * 9999);
+    const testUser = { email: `unique.${random}@test.com`, password: 'test123test' };
 
     beforeEach(async () => {
         const moduleFixture: TestingModule = await Test.createTestingModule({
