@@ -16,6 +16,9 @@ Content-Type: application/json
     "password": "123test123"
 }
 
+### Whoami 
+GET http://localhost:3000/auth/whoami
+
 ### List all users by email
 
 GET http://localhost:3000/auth?email=test@test.com
