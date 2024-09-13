@@ -16,8 +16,11 @@ Content-Type: application/json
     "password": "123test123"
 }
 
-### Whoami 
+### Get the currently signed in user 
 GET http://localhost:3000/auth/whoami
+
+### Sign out
+POST http://localhost:3000/auth/signout
 
 ### List all users by email
 
