@@ -24,5 +24,5 @@ export class Report {
     lat: number;
 
     @Column()
-    mileage: number;
+    mileage: number; 
 }
