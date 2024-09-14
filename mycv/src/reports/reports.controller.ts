@@ -15,7 +15,10 @@ export class ReportsController {
     constructor(private reportsService: ReportsService) {}
 
     @Get()
-    getEstimate(@Query() query: GetEstimateDto) {}
+    getEstimate(@Query() query: GetEstimateDto) {
+        console.log(query);
+        
+    }
 
     @UseGuards(AuthGuard)
     @Serialize(ReportDto)
