@@ -5,8 +5,7 @@ import { AppModule } from './../src/app.module';
 
 describe('Authentication System', () => {
     let app: INestApplication;
-    const random = Math.round(Math.random() * 9999);
-    const testUser = { email: `unique.${random}@test.com`, password: 'test123test' };
+    const testUser = { email: 'unique@test.com', password: 'test123test' };
 
     beforeEach(async () => {
         const moduleFixture: TestingModule = await Test.createTestingModule({
@@ -28,5 +27,17 @@ describe('Authentication System', () => {
                 expect(id).toBeDefined();
                 expect(email).toEqual(testUser.email);
             });
+    });
+
+    it('signup as a new user then get the currently logged in user', async () => {
+        const { email, password } = testUser;
+
+        const res = await request(app.getHttpServer()).post('/auth/signup').send({ email, password }).expect(201);
+
+        const cookie = res.get('Set-Cookie');
+
+        const { body } = await request(app.getHttpServer()).post('/auth/whoami').set('Cookie', cookie).expect(200);
+
+        expect(body.email).toEqual(email);
     });
 });
